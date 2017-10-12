@@ -1,0 +1,33 @@
+{
+  "name": "exact-deps",
+  "version": "1.0.0",
+  "description": "Update all dependency versions in package.json to be exact version currently installed.",
+  "main": "index.js",
+  "bin": {
+    "exact-deps": "index.js"
+  },
+  "keywords": [
+    "dependencies",
+    "semver",
+    "exact",
+    "lock",
+    "package",
+    "modules",
+    "npm"
+  ],
+  "author": "Patrick Camacho <patrick@daftdevelopers.com>",
+  "license": "MIT",
+  "dependencies": {
+    "find-up": "2.1.0",
+    "format-package": "4.0.1",
+    "semver": "5.4.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/camacho/exact-deps.git"
+  },
+  "bugs": {
+    "url": "https://github.com/camacho/exact-deps/issues"
+  },
+  "homepage": "https://github.com/camacho/exact-deps#readme"
+}
