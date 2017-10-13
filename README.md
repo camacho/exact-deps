@@ -43,13 +43,13 @@ For a variety of reasons, I have often wanted to convert all the versions of dep
 This module provides a simple CLI:
 
 ```sh
-./node_modules/.bin/exact-deps --help
+./node_modules/.bin/exact-deps
 ```
 
 If combined with [Yarn](https://yarnpkg.com/), it can be run as:
 
 ```sh
-yarn exact-deps --help
+yarn exact-deps
 ```
 
 It can also be used as part of an [npm script](https://docs.npmjs.com/misc/scripts):
@@ -57,7 +57,7 @@ It can also be used as part of an [npm script](https://docs.npmjs.com/misc/scrip
 ```json
 {
   "scripts": {
-    "deps:exact": "exact-deps -w"
+    "deps:exact": "exact-deps"
   },
   "devDependencies": {
     "exact-deps": "latest"
