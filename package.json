@@ -1,10 +1,43 @@
 {
   "name": "exact-deps",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Update all dependency versions in package.json to be exact version currently installed.",
-  "main": "index.js",
+  "license": "MIT",
+  "engines": {
+    "node": ">=8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/camacho/exact-deps.git"
+  },
+  "bugs": {
+    "url": "https://github.com/camacho/exact-deps/issues"
+  },
+  "homepage": "https://github.com/camacho/exact-deps#readme",
+  "author": "Patrick Camacho <patrick@daftdevelopers.com>",
   "bin": {
     "exact-deps": "index.js"
+  },
+  "main": "index.js",
+  "scripts": {
+    "docs": "scripts/markdown.js",
+    "format": "npm-run-all format:*",
+    "format:js": "prettier --write index.js",
+    "format:pkg": "./index.js && format-package -w -q",
+    "lint": "eslint index.js --fix",
+    "postmerge": "install-deps-postmerge",
+    "precommit": "lint-staged && yarn docs"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ],
+    "package.json": [
+      "format:pkg",
+      "git add"
+    ]
   },
   "keywords": [
     "dependencies",
@@ -15,19 +48,27 @@
     "modules",
     "npm"
   ],
-  "author": "Patrick Camacho <patrick@daftdevelopers.com>",
-  "license": "MIT",
   "dependencies": {
     "find-up": "2.1.0",
     "format-package": "4.0.1",
     "semver": "5.4.1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/camacho/exact-deps.git"
-  },
-  "bugs": {
-    "url": "https://github.com/camacho/exact-deps/issues"
-  },
-  "homepage": "https://github.com/camacho/exact-deps#readme"
+  "devDependencies": {
+    "eslint": "4.8.0",
+    "eslint-config-airbnb-base": "12.0.2",
+    "eslint-config-prettier": "2.6.0",
+    "eslint-plugin-import": "2.7.0",
+    "execa": "0.8.0",
+    "husky": "^0.14.3",
+    "install-deps-postmerge": "1.0.2",
+    "lint-staged": "4.2.3",
+    "markdown-magic": "0.1.19",
+    "markdown-magic-dependency-table": "1.3.0",
+    "markdown-magic-engines": "1.0.1",
+    "markdown-magic-install-command": "1.3.1",
+    "markdown-magic-package-scripts": "1.2.1",
+    "markdown-magic-prettier": "1.0.4",
+    "npm-run-all": "4.1.1",
+    "prettier": "1.7.4"
+  }
 }

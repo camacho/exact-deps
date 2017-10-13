@@ -22,15 +22,15 @@ function exactDeps(cwd = process.cwd()) {
     .filter(
       ([type, deps]) => types.includes(type) && deps && Object.keys(deps).length
     )
-    .map(([type, prevDeps = {}]) => {
-      const nextDeps = Object.entries(prevDeps)
+    .map(([type, deps = {}]) => {
+      const nextDeps = Object.entries(deps)
         .map(([dep, prevVersion]) => {
           let nextVersion;
           if (semver.validRange(prevVersion)) {
             try {
               const dir = require.resolve(dep);
-              const pkgPath = findup.sync('package.json', { cwd: dir });
-              const pkgContent = fs.readFileSync(pkgPath, 'utf8');
+              const depPkgPath = findup.sync('package.json', { cwd: dir });
+              const pkgContent = fs.readFileSync(depPkgPath, 'utf8');
               nextVersion = JSON.parse(pkgContent).version;
             } catch (err) {
               nextVersion = prevVersion;
@@ -56,7 +56,7 @@ function exactDeps(cwd = process.cwd()) {
 module.exports = exactDeps;
 
 if (require.main === module) {
-  const { path, package } = exactDeps();
-  fs.writeFileSync(path, JSON.stringify(package, null, 2));
-  console.log(`✨  Dependencies updated`);
+  const { path, package: pkg } = exactDeps();
+  fs.writeFileSync(path, JSON.stringify(pkg, null, 2));
+  console.log(`✨  Dependency versions updated`);
 }
