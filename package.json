@@ -1,6 +1,6 @@
 {
   "name": "exact-deps",
-  "version": "1.1.0",
+  "version": "1.2.1",
   "description": "Update all dependency versions in package.json to be exact version currently installed.",
   "license": "MIT",
   "engines": {
@@ -16,15 +16,15 @@
   "homepage": "https://github.com/camacho/exact-deps#readme",
   "author": "Patrick Camacho <patrick@daftdevelopers.com>",
   "bin": {
-    "exact-deps": "index.js"
+    "exact-deps": "bin/index.js"
   },
   "main": "index.js",
   "scripts": {
     "docs": "scripts/markdown.js",
     "format": "npm-run-all format:*",
     "format:js": "prettier --write index.js",
-    "format:pkg": "./index.js && format-package -w -q",
-    "lint": "eslint index.js --fix",
+    "format:pkg": "./bin/index.js && format-package -w -q",
+    "lint": "eslint \"{bin,}index.js\" --fix",
     "postmerge": "install-deps-postmerge",
     "precommit": "lint-staged && yarn docs"
   },
@@ -51,7 +51,8 @@
   "dependencies": {
     "find-up": "2.1.0",
     "format-package": "4.0.1",
-    "semver": "5.4.1"
+    "semver": "5.4.1",
+    "yargs": "9.0.1"
   },
   "devDependencies": {
     "eslint": "4.8.0",

@@ -17,6 +17,7 @@ yarn add -D exact-deps
 - [Getting started](#getting-started)
   * [Requirements](#requirements)
   * [Command Line](#command-line)
+    + [Options](#options)
   * [Module](#module)
 - [Integrating](#integrating)
 
@@ -49,7 +50,7 @@ This module provides a simple CLI:
 If combined with [Yarn](https://yarnpkg.com/), it can be run as:
 
 ```sh
-yarn exact-deps
+yarn exact-deps package.json
 ```
 
 It can also be used as part of an [npm script](https://docs.npmjs.com/misc/scripts):
@@ -69,9 +70,16 @@ It can also be used as part of an [npm script](https://docs.npmjs.com/misc/scrip
 yarn deps:exact
 ```
 
+#### Options
+
+| **Option** | **Alias** | **Description** | **Default** |
+| -----------| --------- | -------------- | ----------- |
+| `prefix` | `p` | Prefix to put before each version | `''` |
+| `help` | `h` | Print help menu | |
+
 ### Module
 
-The module exports a function that takes the directory of `package.json`.
+The module exports a function that takes the directory of `package.json` and a `prefix`.
 
 It returns a new object with **path** and **contents** properties
 
@@ -79,7 +87,7 @@ It returns a new object with **path** and **contents** properties
 const fs = require('fs');
 const exactDeps = require('exact-deps');
 
-const { path, contents } = exactDeps(process.cwd());
+const { path, contents } = exactDeps(process.cwd(), '^');
 fs.writeFileSync(path, JSON.stringify(contents, null, 2));
 ```
 
@@ -96,7 +104,7 @@ An effective integration of this plugin could look like this:
   },
   "lint-staged": {
     "package.json": [
-      "exact-deps",
+      "exact-deps -p ^",
       "git add"
     ]
   },

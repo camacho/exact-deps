@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 const fs = require('fs');
 const findup = require('find-up');
 const semver = require('semver');
@@ -11,7 +9,7 @@ const types = [
   'optionalDependencies',
 ];
 
-function exactDeps(cwd = process.cwd()) {
+function exactDeps(cwd = process.cwd(), prefix = '') {
   const pkgPath = findup.sync('package.json', { cwd });
   if (!pkgPath) throw new Error('No package.json file found');
 
@@ -32,6 +30,7 @@ function exactDeps(cwd = process.cwd()) {
               const depPkgPath = findup.sync('package.json', { cwd: dir });
               const pkgContent = fs.readFileSync(depPkgPath, 'utf8');
               nextVersion = JSON.parse(pkgContent).version;
+              nextVersion = [prefix, nextVersion].join('');
             } catch (err) {
               nextVersion = prevVersion;
             }
@@ -54,9 +53,3 @@ function exactDeps(cwd = process.cwd()) {
 }
 
 module.exports = exactDeps;
-
-if (require.main === module) {
-  const { path, package: pkg } = exactDeps();
-  fs.writeFileSync(path, JSON.stringify(pkg, null, 2));
-  console.log(`✨  Dependency versions updated`);
-}

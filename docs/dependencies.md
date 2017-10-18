@@ -12,6 +12,7 @@
  | [find-up@2.1.0](https://github.com/sindresorhus/find-up) | Find a file by walking up parent directories | 2.1.0 | MIT | production | 
  | [format-package@4.0.1](https://github.com/camacho/format-package#readme) | Sensible formatting and ordering of package.json | 4.0.1 | MIT | production | 
  | [semver@5.4.1](https://github.com/npm/node-semver) | The semantic version parser used by npm. | 5.4.1 | ISC | production | 
+ | [yargs@9.0.1](http://yargs.js.org/) | yargs the modern, pirate-themed, successor to optimist. | 9.0.1 | MIT | production | 
  | [eslint@4.8.0](https://eslint.org) | An AST-based pattern checker for JavaScript. | 4.8.0 | MIT | dev | 
  | [eslint-config-airbnb-base@12.0.2](https://github.com/airbnb/javascript) | Airbnb's base JS ESLint config, following our styleguide | 12.0.2 | MIT | dev | 
  | [eslint-config-prettier@2.6.0](https://github.com/prettier/eslint-config-prettier) | Turns off all rules that are unnecessary or might conflict with Prettier. | 2.6.0 | MIT | dev | 
